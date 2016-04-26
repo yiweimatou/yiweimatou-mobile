@@ -13,7 +13,6 @@ const app = express();
 const compiler = webpack(webpackConfig);
 const middleware = webpackMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    contentBase: 'src',
     stats: {
         colors: true,
         hash: false,
@@ -32,7 +31,7 @@ app.use(express.static(path.join(__dirname,'../', '/src/static')));
 //     res.end();
 // });
 
-app.listen(port, 'localhost', function onStart(err) {
+app.listen(port, function onStart(err) {
     if (err) {
         debug(err);
     }
