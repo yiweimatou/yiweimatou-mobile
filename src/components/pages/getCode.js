@@ -1,10 +1,13 @@
 import React from 'react'
 import {Field,Group,Button} from 'amazeui-touch'
-import { browserHistory } from 'react-router'
 
 class getCode extends React.Component {
-    constructor(props){
-        super(props)
+    displayName = 'getcode'
+    static contextTypes = {
+            router:React.PropTypes.object
+    }
+    constructor(props,context){
+        super(props,context)
         this.state = {
             disabled:true
         }
@@ -23,12 +26,17 @@ class getCode extends React.Component {
         }
          
     }
-    handleClick(){
-        this.context.router.push('/login?mobile=13675853598')
+    handleClick() {
+        this.context.router.push({
+            pathname:'/login',
+            query:{
+                mobile:this.refs.mobile.getValue()
+            }
+        })
     }
     render(){
         return(
-            <Group header='登录'>
+            <Group header='获取验证码'>
                 <Field 
                     ref = 'mobile'
                     placeholder='手机号码'

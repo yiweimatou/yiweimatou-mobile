@@ -7,7 +7,7 @@ const webpackConfig = require('../webpack.config.js');
 const _debug =  require('debug');
 
 const debug = _debug('app:server');
-const port = 3001;
+const port = process.env.PORT || 3001;
 const app = express();
 
 const compiler = webpack(webpackConfig);
@@ -26,10 +26,10 @@ const middleware = webpackMiddleware(compiler, {
 app.use(middleware);
 app.use(webpackHotMiddleware(compiler));
 app.use(express.static(path.join(__dirname,'../', '/src/static')));
-// app.get('*', function response(req, res) {
-//     res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
-//     res.end();
-// });
+app.get('*', function response(req, res) {
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname,'../', '/dist/index.html')));
+    res.end();
+});
 
 app.listen(port, function onStart(err) {
     if (err) {

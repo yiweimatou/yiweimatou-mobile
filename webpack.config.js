@@ -28,9 +28,9 @@ webpackConfig.entry = {
     vendor: [
         'react',
         'debug',
-        // 'react-router',
+        'react-router',
         'react-dom',
-        // 'history'
+        'history'
     ]
 }
 
@@ -161,13 +161,13 @@ webpackConfig.module.loaders = [{
     loader: 'url?limit=8192'
 }]
 if (!__DEV__) {
-    // webpackConfig.module.loaders.filter((loader) =>
-    //     loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
-    // ).forEach((loader) => {
-    //     const [first, ...rest] = loader.loaders
-    //     loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
-    //     delete loader.loaders
-    // })
+    webpackConfig.module.loaders.filter((loader) =>
+        loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
+    ).forEach((loader) => {
+        const [first, ...rest] = loader.loaders
+        loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
+        delete loader.loaders
+    })
 
     webpackConfig.plugins.push(
         new ExtractTextPlugin('[name].[contenthash].css', {

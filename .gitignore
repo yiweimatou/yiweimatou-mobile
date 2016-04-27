@@ -1,4 +1,6 @@
-tyings
+typings
+typings.json
+jsconfig.json
 # Logs
 logs
 *.log
