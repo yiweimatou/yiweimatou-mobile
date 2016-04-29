@@ -1,5 +1,6 @@
 import React from 'react'
 import {Field,Group,Button} from 'amazeui-touch'
+import Auth from '../../stores/auth'
 
 class getCode extends React.Component {
     displayName = 'getcode'
@@ -14,8 +15,7 @@ class getCode extends React.Component {
     }
     handleChange(e){
         let mobile = e.target.value
-        if(mobile.length === 11 
-            && /^(((13)|(15)|(17)|(18))+\d{9})$/.test(mobile)){
+        if(/^(((13)|(15)|(17)|(18))+\d{9})$/.test(mobile)){
                 this.setState({
                     disabled:false
                 })
@@ -26,13 +26,16 @@ class getCode extends React.Component {
         }
          
     }
-    handleClick() {
-        this.context.router.push({
-            pathname:'/login',
-            query:{
-                mobile:this.refs.mobile.getValue()
-            }
-        })
+    handleClick= async ()=> {
+        let mobile = this.refs.mobile.getValue()
+        if(await Auth.getCode(mobile)){
+            this.context.router.push({
+                pathname:'/login',
+                query:{
+                    mobile:mobile
+                }
+            })
+        }
     }
     render(){
         return(
