@@ -39,18 +39,18 @@ class App extends React.Component{
                         to='/'
                     />
                     <TabBar.Item
-                        active={location.pathname === '/group'}
-                        eventKey="group"
-                        icon="pages"
-                        title="机构"
-                    />
-                    <TabBar.Item
                         component={Link}
                         active={location.pathname === '/class'}
                         eventKey="class"
                         icon="list"
                         title="课程"
                         to='/class'
+                    />
+                    <TabBar.Item
+                        active={location.pathname === '/search'}
+                        eventKey="search"
+                        icon="search"
+                        title="发现"
                     />
                     <TabBar.Item
                         component={Link}

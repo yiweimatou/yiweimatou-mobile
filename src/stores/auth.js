@@ -11,7 +11,7 @@ const auth = {
     isAuthenticated: () => {
         return !!_getUser()
     },
-    getCode: async(mobile) => {
+    getCode: async (mobile) => {
         let result = false
         if (/^(((13)|(15)|(17)|(18))+\d{9})$/.test(mobile)) {
             await fetch(`${config.api}/captcha/add`, {

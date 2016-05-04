@@ -11,6 +11,7 @@ import GetCode from '../components/pages/getCode'
 import Class from '../components/pages/class'
 import Login from '../components/pages/login'
 import NotFound from '../components/pages/notfound'
+import OrganDetail from '../components/pages/organDetail.js'
 import Auth from '../stores/auth'
 
 const requireAuth = (nextState,replace)=>{
@@ -29,6 +30,7 @@ const Routes = (
         <Route path='me' component={Me} onEnter={requireAuth} />
         <Route path='getcode' component={GetCode} />
         <Route path='class' component={Class} />
+        <Route path='organ/:id' component={OrganDetail} />
         <Route path='login' component={Login} />
         <Route path="*" component={NotFound} />                 
     </Route>
